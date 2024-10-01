@@ -1,13 +1,11 @@
-# core/models.py
-
 from django.db import models
 from django.core.validators import MinValueValidator
 from django.utils import timezone
 
 class Proprietario(models.Model):
     nome = models.CharField(max_length=100)
-    cpf = models.CharField(max_length=14, unique=True)  # Formato: 000.000.000-00
-    telefone = models.CharField(max_length=15)  # Formato: (00) 00000-0000
+    cpf = models.CharField(max_length=14, unique=True)  
+    telefone = models.CharField(max_length=15)  
     email = models.EmailField(unique=True)
 
     def __str__(self):
@@ -15,8 +13,8 @@ class Proprietario(models.Model):
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=100)
-    cpf = models.CharField(max_length=14, unique=True)  # Formato: 000.000.000-00
-    telefone = models.CharField(max_length=15)  # Formato: (00) 00000-0000
+    cpf = models.CharField(max_length=14, unique=True)  
+    telefone = models.CharField(max_length=15)  
     email = models.EmailField(unique=True)
 
     def __str__(self):
@@ -27,14 +25,13 @@ class Imovel(models.Model):
         ('Apartamento', 'Apartamento'),
         ('Casa', 'Casa'),
         ('Comercial', 'Comercial'),
-        # Você pode adicionar mais tipos conforme necessário
     ]
 
     proprietario = models.ForeignKey(Proprietario, on_delete=models.CASCADE, related_name='imoveis')
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
     endereco = models.CharField(max_length=255)
     cidade = models.CharField(max_length=100)
-    estado = models.CharField(max_length=2)  # Exemplo: 'SP', 'RJ'
+    estado = models.CharField(max_length=2)  
     descricao = models.TextField()
     valor_aluguel = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
     imagem = models.ImageField(upload_to='imoveis/', null=True, blank=True)

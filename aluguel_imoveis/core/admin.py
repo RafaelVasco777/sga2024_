@@ -1,5 +1,3 @@
-# core/admin.py
-
 from django.contrib import admin
 from .models import Proprietario, Cliente, Imovel, Contrato, Pagamento
 from django.utils.html import format_html
